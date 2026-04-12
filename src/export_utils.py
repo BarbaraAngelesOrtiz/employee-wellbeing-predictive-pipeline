@@ -13,7 +13,7 @@ import os
 
 # CONFIG
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(BASE_DIR, "data", "models", "best_model.pkl")
+MODEL_PATH = os.path.join(BASE_DIR, "data", "models", "best_model.joblib")
 SUMMARY_PATH = os.path.join(BASE_DIR, "data", "analysis", "cluster_summary.csv")
 EXPORT_DIR = os.path.join(BASE_DIR, "data", "for_genai")
 

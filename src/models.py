@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INPUT_PATH = globals().get('FEATURE_PATH', os.path.join(BASE_DIR, "data", "processed", "mental_health_features.csv"))
 
-MODEL_PATH = os.path.join(BASE_DIR, "data", "models", "best_model.pkl")
+MODEL_PATH = os.path.join(BASE_DIR, "data", "models", "best_model.joblib")
 IMAGE_DIR = globals().get('IMAGE_DIR', os.path.join(BASE_DIR, "images"))
 os.makedirs(IMAGE_DIR, exist_ok=True)
 
