@@ -1,0 +1,6 @@
+target,missing_ratio,balance_score,rows_available
+Would you feel comfortable discussing a mental health disorder with your direct supervisor(s)?,0.2,0.701,1146
+Would you feel comfortable discussing a mental health disorder with your coworkers?,0.2,0.666,1146
+Do you think that discussing a mental health disorder with your employer would have negative consequences?,0.2,0.66,1146
+Do you feel that your employer takes mental health as seriously as physical health?,0.2,0.656,1146
+"Has your employer ever formally discussed mental health (for example, as part of a wellness campaign or other official communication)?",0.2,0.433,1146

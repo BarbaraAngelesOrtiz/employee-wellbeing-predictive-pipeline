@@ -1,413 +1,77 @@
-# 🧠 Workplace Mental Health Risk Modeling
-## Innovating Mental Health Risk Assessment: Predictive ML & Employee Profiling
+# 🧠 Employee Wellbeing & Mental Health Analytics
 
----
+### *A Predictive and Generative Data Product Pipeline*
 
-## 🏆 Hackathon Context and Objective
+## 📌 Project Overview
 
-This project was developed as part of the **EY Data Challenge Hackathon 2026: Innovating Mental Health Risk Assessment**. This project developed robust machine learning models to predict:
+This project delivers an end-to-end analytical framework designed to quantify and predict psychological safety and mental health trends within corporate environments. Unlike traditional descriptive reports, this system functions as a **Data Product**, transitioning from raw survey data to a predictive engine that feeds a **Generative AI** creative layer for personalized HR interventions.
 
-* The current presence of a mental health condition
-* The likelihood of seeking professional treatment
+## 🏗️ Technical Architecture
 
-Additionally, the analysis identified key structural risk drivers and segmented employees into actionable behavioral profiles to support targeted, data-driven organizational interventions.
+The project follows a **Medallion Data Architecture** to ensure scalability and reproducibility:
 
----
+  * **Silver Layer:** Standardized cleaning and normalization of raw survey entries.
+  * **Gold Layer:** High-value features, including composite indices and technical slugs.
+  * **Analysis Layer:** Statistical artifacts, model benchmarks, and GenAI-ready metadata.
 
-## 🎯 Use Case
+-----
 
-Build an explainable Machine Learning system to predict mental health risk factors (anxiety, depression, stress) using structured survey data, and provide actionable insights for early detection and workplace intervention.
+## 🚀 Key Features & Methodology
 
-Deliverables required:
+### 1\. Statistical Target Ranking
 
-* Cleaned dataset
-* Engineered indices
-* Two ML models
-* Clustering (3 employee profiles)
-* Ranked feature importance
-* Business recommendations
-* Excel submission template completion
+Before modeling, we performed a **Quality Benchmark** on multiple candidate targets. Using **Mutual Information (MI)** and balance scores, we identified `comfort_supervisor` as the most reliable indicator of workplace trust.
 
----
+### 2\. Advanced Feature Engineering (Composite Indices)
 
-## 📊 Dataset
+We moved beyond individual survey questions by constructing latent organizational constructs:
 
-* 1,433 technology professionals
-* 69 engineered features
-* 26.3% structured missingness (logic-based and conservative imputation applied)
+  * **Support Index:** Quantifies benefits awareness and organizational resources.
+  * **Stigma Index:** Measures the "Silence Cost" and perceived career risk of disclosure.
 
-Prevalence rates:
+### 3\. Archetypal Discovery (Unsupervised Learning)
 
-* 52% reported a current mental health condition
-* 58.5% had sought professional treatment
+Using **K-Means (Optimized via Silhouette Analysis)**, we identified two critical personas:
 
-A strong correlation was observed between condition presence and treatment-seeking behavior (r = 0.64). However, treatment is not universal, suggesting structural barriers such as limited awareness of support resources and perceived stigma.
+  * **Protected Advocates:** High trust, high awareness, low perceived stigma.
+  * **Silent Risk Group:** 93.3% history of disorders but lowest disclosure rates due to high perceived stigma.
 
-Anonymous survey of technology industry professionals, including:
+### 4\. Supervised Benchmarking (Logistic Regression vs. Random Forest)
 
-* Current, past, diagnosed, treated mental health status
-* Workplace productivity impact
-* Company mental health benefits & policies
-* Workplace culture (stigma & openness)
-* Demographic and job-related data
+We implemented a competitive modeling pipeline. **Logistic Regression** emerged as the winner with **80.14% Accuracy**, demonstrating a strong linear relationship between structural workplace drivers and individual comfort.
 
----
+### 5\. GenAI-Ready Handover Pipeline
 
-## 🔄 Analytical Workflow
+The backend culminates in an automated export of **JSON artifacts**. This kit bridges the gap between predictive logic and Generative AI, providing semantic prompts and predictive weights for automated communication campaigns.
 
-The solution follows a structured and auditable pipeline:
+-----
 
-```
-1. Raw Data Audit
-2. Data Cleaning (Schema-driven ETL)
-3. Post-cleaning validation
-4. Feature Engineering (Index construction)
-5. Correlation ranking
-6. Clustering (3 profiles)
-7. Supervised modeling (2 targets)
-8. Model Serialization
-9. Interpretation & Business insights
-```
+## 📊 Performance Metrics
 
-Each stage was validated before moving forward to prevent leakage and ensure reproducibility.
+| Metric | Logistic Regression (Winner) | Random Forest |
+| :--- | :--- | :--- |
+| **Accuracy** | **80.14%** | 78.75% |
+| **F1-Score (Weighted)** | **0.79** | 0.77 |
+| **Primary Drivers** | Stigma Index, Support Index | Stigma Index, Leave Easiness |
 
----
-## 🗂 Repository Structure
+-----
 
-````
-mental-health-ey/
-│
-├── README.md
-│
+## 📁 Repository Structure
+
+```bash
 ├── data/
-│   ├── raw/
-│   │   ├── mental_health.csv
-│   │   └── submission_template.xlsx
-│   │
-│   ├── processed/
-│   │   ├── mental_health_cleaned.csv
-│   │   ├── mental_health_features.csv
-│   │   ├── model_condition_with_probs.csv
-│   │   ├── model_treatment_with_probs.csv
-│   │   ├── clusters.csv
-│   │   └── submission_filled.xlsx
-│   │
-│   └── analysis/
-│       ├── cluster_metrics.txt
-│       ├── cluster_summary.csv
-│       ├── correlation_matrix.csv
-│       ├── feature_correlations.txt
-│       ├── missing_summary.csv
-│       ├── value_report_clean.txt
-│       └── value_report_raw.txt
-│
-├── images/
-│   ├── Cluster_distribution.png
-│   ├── Cluster_profiles_zscore.png
-│   ├── Correlation_top_features_vs_target.png
-│   ├── Feature_correlation_matrix.png
-│   ├── Missing_ratio.png
-│   ├── PCA.png
-│   ├── Radar_cluster_0.png
-│   ├── Radar_cluster_1.png
-│   ├── Radar_cluster_2.png
-│   ├── Target_distributions.png
-│   │
-│   ├── condition/
-│   │   ├── CM_logistic.png
-│   │   ├── Probability_logistic.png
-│   │   ├── PR_logistic.png
-│   │   ├── Radar_logistic.png
-│   │   ├── RF_feature_importance.png
-│   │   ├── SHAP_summary_condition.png
-│   │   └── ROC_logistic.png
-│   │
-│   └── treatment/
-│       ├── CM_logistic.png
-│       ├── Probability_logistic.png
-│       ├── PR_logistic.png
-│       ├── Radar_logistic.png
-│       ├── RF_feature_importance.png
-│       ├── SHAP_summary_treatment.png
-│       └── ROC_logistic.png
-│
-├── models/
-│   ├── logistic_model_condition.pkl
-│   ├── logistic_model_treatment.pkl
-│   ├── logistic_threshold_condition.pkl
-│   ├── logistic_threshold_treatment.pkl
-│   ├── rf_model_condition.pkl
-│   ├── rf_model_treatment.pkl
-│   ├── rf_threshold_condition.pkl
-│   └── rf_threshold_treatment.pkl
-│
-├── src/
-│    ├── analyze_values.py
-│    ├── cleaning.py
-│    ├── clustering.py
-│    ├── features.py
-│    ├── model_condition.py
-│    ├── model_treatment.py
-│    └── submission_excel.py 
-│ 
-├── docs/
-│    ├── Executive_summary.pdf
-│    └── Report.pdf
-│
-└── requirements. txt 
-````
----
-
-## 🧹 Data Preparation & Quality Assurance
-
-✔ Cleaned and normalized categorical responses
-
-✔ Handled missing values (“N/A”, “I don’t know”, “Prefer not to say”)
-
-✔ Encoded binary, ordinal, and Likert scales
-
-✔ Implemented schema-based transformations
-
-✔ Generated raw and cleaned value audit reports
-
-Output:
-
-````
-data/processed/mental_health_cleaned.csv
-````
-
----
-
-## 🧮 Feature Engineering & Index Construction
-
-Three composite indices were engineered as required:
-
-### 🟢 Mental Health Support Index
-
-Captures institutional support:
-
-* Benefits availability
-* Resource visibility
-* Anonymity protection
-* Formal communication
-
-Top correlated field pairs were identified as required by the submission template.
-
-### 🟠 Workplace Stigma Index
-
-Captures perceived negative consequences:
-
-* Fear of employer reaction
-* Observed discrimination
-* Client impact
-* Disclosure hesitation
-
-Top 5 correlation pairs provided.
-
-### 🔵 Organizational Openness Score
-
-Captures comfort discussing mental health:
-
-* With coworkers
-* With supervisors
-* With family/friends
-
-Top 5 correlation pairs provided. All engineered features were saved into a modeling-ready dataset before clustering and supervised learning.
-
----
-
-## 🤖 Supervised Modeling
-
-Two required targets. Random Forest was evaluated but Logistic Regression performed better and provided clearer interpretability.
-
-### 🎯 Model 1
-
-Target:
-**“Do you currently have a mental health disorder?”**
-
-* Logistic Regression ROC-AUC: **0.923**
-* F1 Score ≈ 0.90
-* Top 10 correlated features identified and ranked
-* Model trained only on selected top features 
-
-Key predictors:
-
-* Past disorder history
-* Clinical diagnosis
-* Family history
-* Reported productivity interference
-
----
-
-### 🎯 Model 2
-
-Target:
-**“Have you ever sought treatment for a mental health issue from a mental health professional?”**
-
-* Logistic Regression ROC-AUC: **0.922**
-* F1 Score ≈ 0.85
-* Top 10 correlated features identified
-* Model trained using only those selected predictors
-
-Key drivers:
-
-* Clinical diagnosis
-* Awareness of available support resources
-* Organizational openness
-* Perceived stigma
-
----
-
-## 🔎 Model Interpretability
-
-Feature importance analysis performed via:
-
-* Logistic coefficients
-* Permutation importance
-* Correlation ranking
-* Mutual information
-
-Strongest drivers:
-
-* Past disorder
-* Clinical diagnosis
-* Diagnosis confirmation
-* Family history
-* Productivity impact
-* Untreated interference
-
-Diagnosis-related variables showed near-perfect collinearity (r = 0.993 between diagnosis indicators).
-
----
-
-## 🔍 Model Explainability (SHAP)
-
-To ensure interpretability and strategic insight, SHAP (SHapley Additive exPlanations) was used to analyze feature contributions in both classification models.
-
-### 💬 Treatment Model – Key Drivers
-
-Treatment-seeking behavior is primarily influenced by:
-
-* Employer mental health support
-* Knowledge of available care options
-* Perceived stigma and workplace interference
-
-This provides actionable insights for organizational intervention strategies.
-
----
-
-## 👥 Clustering 
-
-Objective: Identify three distinct employee profiles. This employee segmentation used KMeans, k=3
-
-1. **Clinically Diagnosed**
-   High formal diagnosis rates and ongoing work interference.
-
-2. **Undiagnosed but Impacted**
-   Significant productivity loss without formal diagnosis, a hidden operational risk group.
-
-3. **Lower Disclosure**
-   Low reported openness and potential underreporting risk.
-
-
-KMeans was selected because:
-
-* Higher silhouette score than Agglomerative
-* Stability on standardized numeric features
-* Clear interpretability
-* Suitable for fixed k=3 requirement
-
----
-
-### Employee Segmentation – Behavioral Profiles
-
-Using KMeans clustering (k=3), the workforce was segmented into three meaningful mental health profiles:
-
-🔹 **Clinically Diagnosed & High Impact**
-Employees with established diagnoses and significant workplace interference.
-
-🔹 **Undiagnosed but Impacted**
-Employees reporting productivity disruption without formal diagnosis, representing a hidden operational risk.
-
-🔹 **Lower Risk / Moderate Support**
-Employees with lower reported clinical burden and comparatively stronger perceived support.
-
-This segmentation demonstrates that workplace mental health risk is not binary but distributed across distinct structural patterns. 
-
-The identification of an undiagnosed yet operationally affected group underscores the importance of proactive screening and improved visibility of mental health resources.
-
-Rather than applying uniform policies, organizations can tailor interventions based on employee risk profiles.
-
----
-
-## 🤖 Model Serialization
-
-Two predictive targets were modeled using Logistic Regression and Random Forest:
-
-1. **Current mental health condition**
-2. **Treatment-seeking behavior**
-
-The trained models and their classification thresholds were serialized in the `models/` folder, enabling reproducible predictions without retraining. Serialized files include:
-
-```
-logistic_model_condition.pkl       logistic_threshold_condition.pkl
-logistic_model_treatment.pkl       logistic_threshold_treatment.pkl
-rf_model_condition.pkl             rf_threshold_condition.pkl
-rf_model_treatment.pkl             rf_threshold_treatment.pkl
+│   ├── raw/               # Original survey data
+│   ├── processed/         # Silver (Cleaned) & Gold (Features) layers
+│   ├── analysis/          # Statistical reports
+│   ├── models/            # Model artifacts (.pkl)
+│   └── for_genai/         # JSON metadata for Generative AI integration
+├── images/                # Benchmarking plots and persona visualizations
+├── src/                   # Modular Python scripts (Cleaning, Clustering, Features, Modeling, Export)
+├── requirements. txt      # Libraries
+└── notebooks/main.ipynb   # Main orchestration notebook
 ```
 
-These can be loaded in Python using `joblib`:
-
-```python
-import joblib
-
-# Load a model and its threshold
-model = joblib.load('models/logistic_model_condition.pkl')
-threshold = joblib.load('models/logistic_threshold_condition.pkl')
-```
-
-This approach ensures that future steps, analyses, or deployment pipelines can leverage the trained models directly, maintaining reproducibility and efficiency.
-
----
-
-## 📈 Key Business Insights & Strategic Implications
-
-The analysis reveals that mental health outcomes in technology workplaces are structurally driven rather than random.
-
-Diagnosis history emerges as the strongest predictor of both current condition and treatment-seeking behavior, indicating continuity in mental health patterns. While perceived organizational support and openness culture influence outcomes, formal policy presence alone does not guarantee psychological safety. Similarly, company size does not inherently determine the quality of mental health support structures.
-
-A particularly critical finding is the existence of a large segment of employees reporting measurable productivity impact without formal diagnosis. This group represents a hidden operational risk and a missed opportunity for early intervention.
-
-These results suggest that organizations must move beyond reactive models of support and adopt proactive, data-driven strategies. Effective actions include:
-
-* Implementing confidential early-risk screening mechanisms
-* Increasing visibility and structured communication of available mental health resources
-* Training managers to foster psychological safety and open dialogue
-* Deploying targeted interventions tailored to distinct employee segments
-
-By addressing both structural risk drivers and cultural dynamics, companies can reduce untreated cases, mitigate productivity loss, and strengthen long-term workforce sustainability.
-
----
-
-## 🏅 Hackathon Outcome Alignment
-
-This solution delivers:
-
-✔ An explainable ML model
-
-✔ A ranked list of key workplace factors
-
-✔ Clearly identified employee risk profiles
-
-✔ Correlation pairs for each engineered index
-
-✔ Cluster-defining features
-
-✔ Concrete organizational recommendations
-
-✔ Reproducible code pipeline
-
----
+-----
 
 ## 🛠 Technical Stack
 
@@ -420,112 +84,53 @@ This solution delivers:
 * Random Forest
 * Silhouette Analysis
 
----
+-----
+
+## 🧮 Outputs
+
+The pipeline generates a set of production-ready artifacts used for decision-making and downstream integration:
+
+- **Cleaned Dataset:** A standardized Silver Layer version of the raw survey data.
+
+- **Feature-Engineered Dataset:** The Gold Layer containing composite indices ready for modeling.
+
+- **Cluster Metrics:** Statistical summaries and fingerprints of the identified employee personas.
+
+- **Model Prediction Files:** Probabilistic predictions of employee comfort levels.
+
+- **Serialized Artifacts:** High-performance .pkl models and serialized thresholds for real-time inference.
+
+
+-----
+
+## 🔄 Installation & Usage
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/mental-health-analytics.git
+    ```
+2.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Run the Pipeline:**
+    Open `main_notebook.ipynb` and execute all cells to reproduce the cleaning, clustering, modeling, and export phases.
+
+-----
+
+## 🏆 Business Impact
+
+  * **Proactive Intervention:** Identifies "Silent Risk" employees before burnout or turnover occurs.
+  * **Data-Driven Culture:** Provides HR with quantifiable "Stigma" and "Support" metrics to measure the ROI of wellness initiatives.
+  * **Personalization at Scale:** The GenAI bridge allows for the automated generation of tailored support messages based on individual predictive profiles.
+
+-----
 
 ## 🎯 Final Reflection
 
-Workplace mental health is predictable, measurable, and influenceable. The strong predictive signal (ROC-AUC > 0.92) combined with actionable segmentation demonstrates that data-driven strategies can meaningfully reduce untreated cases and productivity loss.
+The journey through this project highlights a fundamental shift in HR analytics: moving from clinical symptoms to organizational systems. By prioritizing the "Stigma Index" and "Supervisor Comfort" as primary predictive drivers, the model proves that psychological safety is not an individual trait but an environmental outcome. The integration with Generative AI marks the next frontier for this work—not just predicting risk, but automating the empathy and communication needed to mitigate it. This project stands as a testament to how data science can be both mathematically rigorous and profoundly human-centric.
 
-Mental health strategy is not only an ethical responsibility, it is a structural and economic lever for sustainable organizational performance.
-
-This project demonstrates:
-
-* Governed data engineering
-* Leakage-aware modeling
-* Structured feature selection
-* Interpretable clustering
-* Business-aligned analytics
-
-It bridges technical rigor with organizational impact.
-
----
-
-## 🚀 How to Run
-
-### Central execution script
-
-```bash
-python notebooks/main.ipynb
-```
-
-#### 1️. Cleaning and analyze
-
-```bash
-python src/cleaning.py
-python src/analyze_values.py
-```
-
-#### 2️. Feature Engineering
-
-```bash
-python src/features.py
-```
-
-#### 3. Modeling
-
-```bash
-python src/modeling_condition.py
-python src/modeling_treatment.py
-```
-#### 4. Clustering
-
-```bash
-python src/clustering.py
-```
-#### 5. Submission of excel
-
-```bash
-python src/submission_excel.py
-```
----
-
-## 📂 Outputs
-
-Generated artifacts:
-
-* Cleaned dataset
-* Feature-engineered dataset
-* Cluster metrics
-* Model prediction files with probabilities
-* Serialized thresholds and models
-* Final excel document 
-* Executive Summary and Report 
-
----
-
-## 🛠️ Instructions for Running the Notebook
-
-1. Clone or download this repository:
-
-```bash
-git clone https://github.com/user/mental-health-ey
-```
-2. Install the necessary dependencies (recommended: use a virtual environment):
-
-```bash
-pip install pandas matplotlib seaborn numpy plotly math matplotlib requests
-```
-3. Open the notebook in Jupyter, VSCode, or Google Colab:
-
-4. Run the cells sequentially to replicate the full analysis.
-
----
-
-## 📂 Project Access
-
-- [Notebook](notebooks/main.ipynb)
-- [Cleaning](src/cleaning.py)
-- [Analyze](src/analyze_values.py)
-- [Features](src/features.py)
-- [Clustering](src/clustering.py)
-- [Condition Model](src/model_condition.py)
-- [Treatment Model](src/model_treatment.py)
-- [Submission Excel](src/submission_excel.py)
-- [Executive Summary](docs/Executive_summary.pdf)
-- [Report](docs/Report.pdf)
-
-
----
+-----
 
 ## Author
 
@@ -538,7 +143,7 @@ pip install pandas matplotlib seaborn numpy plotly math matplotlib requests
 ![Status](https://img.shields.io/badge/Status-Completed-success) 
 ![Reproducible](https://img.shields.io/badge/Reproducible-Yes-brightgreen)
 
-![EY Data Challenge](https://img.shields.io/badge/EY-Data%20Challenge-yellow) 📅 February 2026
+![WAI Ireland](https://img.shields.io/badge/WAI%20Challenge-yellow) 📅 April 2026
 
 ![ML Project](https://img.shields.io/badge/Machine%20Learning-Project-purple)
 ![Feature Engineering](https://img.shields.io/badge/Feature%20Engineering-Advanced-blueviolet)
@@ -558,11 +163,4 @@ pip install pandas matplotlib seaborn numpy plotly math matplotlib requests
 ![Logistic Regression](https://img.shields.io/badge/Model-Logistic%20Regression-success)
 ![Random Forest](https://img.shields.io/badge/Model-Random%20Forest-success)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.0-orange)
-
-
-
-
-
-
-
 

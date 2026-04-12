@@ -1,4 +1,4 @@
-# Mental Health Hackathon - Cleaning & ETL Pipeline
+# Mental Health - Cleaning & ETL Pipeline
 # Author: Barbara Ortiz
 # Purpose:
 #   - Governed ETL for survey data

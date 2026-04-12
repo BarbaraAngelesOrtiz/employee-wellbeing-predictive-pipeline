@@ -1,0 +1,12 @@
+{
+    "Protected Advocates": {
+        "traits": "High supervisor trust, high benefit awareness, low perceived stigma.",
+        "visual_keywords": "Open communication, supportive environment, bright, collaborative.",
+        "risk_level": "Low"
+    },
+    "Silent Risk Group": {
+        "traits": "High stigma index, high fear of consequences, history of mental health disorders but low disclosure.",
+        "visual_keywords": "Hidden barriers, isolation, corporate pressure, transitioning to support.",
+        "risk_level": "Critical"
+    }
+}
