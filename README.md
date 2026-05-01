@@ -2,17 +2,23 @@
 
 ### *A Predictive and Generative Data Product Pipeline*
 
+![Dashboard Preview](images/Dashboard.png)
+
 ## 📌 Project Overview
 
-This project delivers an end-to-end analytical framework designed to quantify and predict psychological safety and mental health trends within corporate environments. Unlike traditional descriptive reports, this system functions as a **Data Product**, transitioning from raw survey data to a predictive engine that feeds a **Generative AI** creative layer for personalized HR interventions.
+This project delivers an end-to-end analytical framework designed to quantify and predict psychological safety and mental health trends within corporate environments. Transitioning from raw survey data to a predictive engine, the system now features a Strategic Interactive Dashboard that allows HR leaders to simulate scenarios and visualize risk drivers in real-time.
 
 ## 🏗️ Technical Architecture
 
-The project follows a **Medallion Data Architecture** to ensure scalability and reproducibility:
+The project follows a Medallion Data Architecture integrated with a modern Frontend:
 
-  * **Silver Layer:** Standardized cleaning and normalization of raw survey entries.
-  * **Gold Layer:** High-value features, including composite indices and technical slugs.
-  * **Analysis Layer:** Statistical artifacts, model benchmarks, and GenAI-ready metadata.
+- Silver Layer: Standardized cleaning and normalization.
+
+- Gold Layer: High-value features (Support & Stigma Indices).
+
+- Analysis Layer: Statistical artifacts and model benchmarks.
+
+- Presentation Layer: React-based interactive dashboard for "What-If" simulation.
 
 -----
 
@@ -44,6 +50,15 @@ We implemented a competitive modeling pipeline. **Logistic Regression** emerged 
 
 The backend culminates in an automated export of **JSON artifacts**. This kit bridges the gap between predictive logic and Generative AI, providing semantic prompts and predictive weights for automated communication campaigns.
 
+### 6\.Interactive Strategic Dashboard
+A React-powered interface that allows users to:
+
+* **What-If Simulator:** Adjust employee variables (Fear of consequences, Stigma, etc.) to see real-time probability changes.
+
+* **Key Risk Drivers:** Dynamic visualization of which factors are inhibiting or driving comfort.
+
+* **Synthetic Personas:** Quick-access profiles to understand different employee archetypes.
+
 -----
 
 ## 📊 Performance Metrics
@@ -64,17 +79,21 @@ The backend culminates in an automated export of **JSON artifacts**. This kit br
 │   ├── processed/         # Silver (Cleaned) & Gold (Features) layers
 │   ├── analysis/          # Statistical reports
 │   ├── models/            # Model artifacts (.pkl)
-│   └── for_genai/         # JSON metadata for Generative AI integration
+│   └── for_genai/         # JSON metadata for Generative AI 
+├── frontend/              # React + Tailwind CSS Dashboard
+│   ├── src/               # Components (Simulator, Charts, Personas)
+│   └── public/            # Assets
 ├── images/                # Benchmarking plots and persona visualizations
 ├── src/                   # Modular Python scripts (Cleaning, Clustering, Features, Modeling, Export)
 ├── requirements. txt      # Libraries
-└── notebooks/main.ipynb   # Main orchestration notebook
+└── notebooks/             # Orchestration (main.ipynb, simulator.ipynb)
 ```
 
 -----
 
 ## 🛠 Technical Stack
 
+Data Science:
 * Python
 * Pandas
 * NumPy
@@ -83,6 +102,13 @@ The backend culminates in an automated export of **JSON artifacts**. This kit br
 * Logistic Regression
 * Random Forest
 * Silhouette Analysis
+
+Frontend (UI/UX):
+
+* React.js: Functional components and State management.
+* Tailwind CSS: Professional utility-first styling.
+* Recharts: Interactive data visualization for risk drivers.
+* Lucide React: Iconography.
 
 -----
 
@@ -116,6 +142,14 @@ The pipeline generates a set of production-ready artifacts used for decision-mak
 3.  **Run the Pipeline:**
     Open `main_notebook.ipynb` and execute all cells to reproduce the cleaning, clustering, modeling, and export phases.
 
+4. **Frontend Setup**
+    ```bash
+      cd frontend
+      npm install
+      npm start
+    ```
+  The dashboard will be available at http://localhost:3000.
+
 -----
 
 ## 🏆 Business Impact
@@ -123,12 +157,17 @@ The pipeline generates a set of production-ready artifacts used for decision-mak
   * **Proactive Intervention:** Identifies "Silent Risk" employees before burnout or turnover occurs.
   * **Data-Driven Culture:** Provides HR with quantifiable "Stigma" and "Support" metrics to measure the ROI of wellness initiatives.
   * **Personalization at Scale:** The GenAI bridge allows for the automated generation of tailored support messages based on individual predictive profiles.
+  * **Scenario Simulation:** HR can test "What-if" we improve the Support Index? to see the impact on organizational comfort.
 
 -----
 
 ## 🎯 Final Reflection
 
-The journey through this project highlights a fundamental shift in HR analytics: moving from clinical symptoms to organizational systems. By prioritizing the "Stigma Index" and "Supervisor Comfort" as primary predictive drivers, the model proves that psychological safety is not an individual trait but an environmental outcome. The integration with Generative AI marks the next frontier for this work—not just predicting risk, but automating the empathy and communication needed to mitigate it. This project stands as a testament to how data science can be both mathematically rigorous and profoundly human-centric.
+The journey through this project highlights a fundamental shift in HR analytics: moving from clinical symptoms to organizational systems. By prioritizing the "Stigma Index" and "Supervisor Comfort" as primary predictive drivers, the model proves that psychological safety is not an individual trait but an environmental outcome. 
+
+The integration with Generative AI marks the next frontier for this work—not just predicting risk, but automating the empathy and communication needed to mitigate it. This project stands as a testament to how data science can be both mathematically rigorous and profoundly human-centric.
+
+The addition of the Interactive Dashboard transforms abstract coefficients into a tangible tool for empathy and decision-making, bridging the gap between data science and human-centric HR leadership.
 
 -----
 
