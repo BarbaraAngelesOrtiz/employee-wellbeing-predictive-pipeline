@@ -203,3 +203,12 @@ The addition of the Interactive Dashboard transforms abstract coefficients into 
 ![Random Forest](https://img.shields.io/badge/Model-Random%20Forest-success)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.0-orange)
 
+![Interactive Dashboard](https://img.shields.io/badge/UI%2FUX-Interactive%20Dashboard-ff69b4)
+![Responsive Design](https://img.shields.io/badge/Design-Responsive-brightgreen)
+![Simulator](https://img.shields.io/badge/Feature-What--If%20Simulator-yellow)
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Recharts](https://img.shields.io/badge/Recharts-22b5bf?style=for-the-badge&logo=chart.js&logoColor=white)
+![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-F05032?style=for-the-badge&logo=lucide&logoColor=white)
+
