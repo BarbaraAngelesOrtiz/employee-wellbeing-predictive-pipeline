@@ -34,6 +34,7 @@ desktop.ini
 
 # Frontend (Node/React) 
 node_modules/
+frontend/node_modules/
 build/
 .env
 .env.local
